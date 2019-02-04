@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class BoardService {
-	public Board board = new Board();
+	private static  Board board;
 	private String lastPlayedPiece = "";
 	public Board getBoard() {
 		return board;
@@ -26,31 +26,43 @@ public class BoardService {
 	
 	public boolean checkWinner(String symbol) {
 		boolean winner = false;
-		if(board.getBoard()[0][0].equals(symbol) && board.getBoard()[0][1].equals(symbol) && board.getBoard()[0][2].equals(symbol)) {
+		if(board.getBoard()[0][0].getPiece().equals(symbol) && board.getBoard()[0][1].getPiece().equals(symbol) && board.getBoard()[0][2].getPiece().equals(symbol)) {
 			winner = true;
 		}
-		if(board.getBoard()[1][0].equals(symbol) && board.getBoard()[1][1].equals(symbol) && board.getBoard()[1][2].equals(symbol)) {
+		if(board.getBoard()[1][0].getPiece().equals(symbol) && board.getBoard()[1][1].getPiece().equals(symbol) && board.getBoard()[1][2].getPiece().equals(symbol)) {
 			winner = true;
 		}
-		if(board.getBoard()[2][0].equals(symbol) && board.getBoard()[2][1].equals(symbol) && board.getBoard()[2][2].equals(symbol)) {
+		if(board.getBoard()[2][0].getPiece().equals(symbol) && board.getBoard()[2][1].getPiece().equals(symbol) && board.getBoard()[2][2].getPiece().equals(symbol)) {
 			winner = true;
 		}
-		if(board.getBoard()[0][0].equals(symbol) && board.getBoard()[1][0].equals(symbol) && board.getBoard()[2][0].equals(symbol)) {
+		if(board.getBoard()[0][0].getPiece().equals(symbol) && board.getBoard()[1][0].getPiece().equals(symbol) && board.getBoard()[2][0].getPiece().equals(symbol)) {
 			winner = true;
 		}
-		if(board.getBoard()[1][0].equals(symbol) && board.getBoard()[1][1].equals(symbol) && board.getBoard()[1][2].equals(symbol)) {
+		if(board.getBoard()[1][0].getPiece().equals(symbol) && board.getBoard()[1][1].getPiece().equals(symbol) && board.getBoard()[1][2].getPiece().equals(symbol)) {
 			winner = true;
 		}
-		if(board.getBoard()[2][0].equals(symbol) && board.getBoard()[2][1].equals(symbol) && board.getBoard()[2][2].equals(symbol)) {
+		if(board.getBoard()[2][0].getPiece().equals(symbol) && board.getBoard()[2][1].getPiece().equals(symbol) && board.getBoard()[2][2].getPiece().equals(symbol)) {
 			winner = true;
 		}
-		if(board.getBoard()[0][0].equals(symbol) && board.getBoard()[1][1].equals(symbol) && board.getBoard()[2][2].equals(symbol)) {
+		if(board.getBoard()[0][0].getPiece().equals(symbol) && board.getBoard()[1][1].getPiece().equals(symbol) && board.getBoard()[2][2].getPiece().equals(symbol)) {
 			winner = true;
 		}
-		if(board.getBoard()[0][2].equals(symbol) && board.getBoard()[1][1].equals(symbol) && board.getBoard()[2][0].equals(symbol)) {
+		if(board.getBoard()[0][2].getPiece().equals(symbol) && board.getBoard()[1][1].getPiece().equals(symbol) && board.getBoard()[2][0].getPiece().equals(symbol)) {
 			winner = true;
 		}
 		return winner;
+	}
+
+	public static Board getBoardInstance() {
+		if(board==null) {
+			board= new Board();
+		}
+		return board;
+	}
+
+	public void startBoard() {
+		getBoardInstance().clearBoard();
+		
 	}
 
 }
